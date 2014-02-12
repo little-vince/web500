@@ -5,11 +5,10 @@ suits = ["spades", "clubs", "diamonds", "hearts"]
 
 class Card(object):
     """Contains a card's value and suit."""
-    value = None
-    label = None
-    rank = None
 
     def __init__(self, rank, suit):
+        self.label = ""
+        self.value = None
         self.rank = rank
         self.suit = suit
         self._gen_label()
@@ -35,12 +34,12 @@ class Card(object):
 
 class Deck(object):
     """A list of Card objects"""
-    deck = []
 
     def __init__(self, six_players):
         if six_players:
             print("6 players is currently unsupported.")
-            return 1
+            exit(1)
+        self.deck = []
         ranks = list(range(5, 11))
         ranks.extend([20, 21, 22, 23])
         for s in suits:
@@ -66,10 +65,10 @@ class Deck(object):
 
 
 class Game(object):
-    players = []
-    kitty = []
 
     def __init__(self, players):
+        self.players = []
+        self.kitty = []
         deck = Deck(players == 6)
         for i in range(players):
             p = Player("Player %i" % (i + 1))
@@ -82,21 +81,20 @@ class Game(object):
         for p in self.players:
             deck.deal(p, 3)
         self.kitty.append(deck.draw())
-        """print(deck.size())
+        print(deck.size())
         print(len(self.players))
         for p in self.players:
             print(p.name)
             for c in p.hand:
-                print(c)"""
+                print(c)
 
 
 class Player(object):
-    name = ""
-    hand = []
-    is_dealer = False
 
     def __init__(self, name):
         self.name = name
+        self.hand = []
+        self.is_dealer = False
 
     def give(self, card):
         self.hand.append(card)
