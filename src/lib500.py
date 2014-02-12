@@ -35,9 +35,9 @@ class Card(object):
 class Deck(object):
     """A list of Card objects"""
 
-    def __init__(self, six_players):
-        if six_players:
-            print("6 players is currently unsupported.")
+    def __init__(self, player_count):
+        if player_count != 4:
+            print("%i players is currently unsupported." % player_count)
             sys.exit(1)
         self.deck = []
         ranks = list(range(5, 11))
@@ -63,11 +63,11 @@ class Deck(object):
 class Game(object):
     """Mastermind that manages the Game"""
 
-    def __init__(self, players):
+    def __init__(self, player_count):
         self.players = []
         self.kitty = []
-        deck = Deck(players == 6)
-        for i in range(players):
+        deck = Deck(player_count)
+        for i in range(player_count):
             p = Player("Player %i" % (i + 1))
             deck.deal(p, 3)
             self.players.append(p)
