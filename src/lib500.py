@@ -1,3 +1,4 @@
+import sys
 import random
 
 suits = ["spades", "clubs", "diamonds", "hearts"]
@@ -7,7 +8,6 @@ class Card(object):
     """Contains a card's value and suit."""
 
     def __init__(self, rank, suit):
-        self.label = ""
         self.value = None
         self.rank = rank
         self.suit = suit
@@ -38,7 +38,7 @@ class Deck(object):
     def __init__(self, six_players):
         if six_players:
             print("6 players is currently unsupported.")
-            exit(1)
+            sys.exit(1)
         self.deck = []
         ranks = list(range(5, 11))
         ranks.extend([20, 21, 22, 23])
@@ -59,12 +59,9 @@ class Deck(object):
     def size(self):
         return len(self.deck)
 
-    def show(self):
-        for card in self.deck:
-            print(card)
-
 
 class Game(object):
+    """Mastermind that manages the Game"""
 
     def __init__(self, players):
         self.players = []
@@ -81,15 +78,10 @@ class Game(object):
         for p in self.players:
             deck.deal(p, 3)
         self.kitty.append(deck.draw())
-        print(deck.size())
-        print(len(self.players))
-        for p in self.players:
-            print(p.name)
-            for c in p.hand:
-                print(c)
 
 
 class Player(object):
+    """Keeps track of the player's name and cards"""
 
     def __init__(self, name):
         self.name = name
