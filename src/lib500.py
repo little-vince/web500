@@ -50,7 +50,7 @@ class Deck(object):
         random.shuffle(self.deck)
 
     def deal(self, player, num):
-        for i in range(num):
+        for _ in range(num):
             player.give(self.draw())
 
     def draw(self):
