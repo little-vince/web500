@@ -46,7 +46,7 @@ class Deck(object):
             for r in ranks:
                 self.deck.append(Card(r, s))
         self.deck.extend([Card(4, "diamonds"), Card(4, "hearts"),
-                         Card(99, None)])
+                          Card(99, None)])
         random.shuffle(self.deck)
 
     def deal(self, player, num):
