@@ -1,5 +1,5 @@
-import sys
 import random
+import sys
 
 suits = ["spades", "clubs", "diamonds", "hearts"]
 
@@ -11,6 +11,7 @@ class Card(object):
         self.value = None
         self.rank = rank
         self.suit = suit
+        self.label = ""
         self._gen_label()
 
     def _gen_label(self):
